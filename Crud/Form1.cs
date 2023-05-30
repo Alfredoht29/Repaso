@@ -33,6 +33,10 @@ namespace Crud
            DataGridView.DataSource=null;
            DataGridView.DataSource= dgv;
         }
+        public void errormessage(string error)
+        {
+            MessageBox.Show(error);
+        }
 
         private void Label1_Click(object sender, EventArgs e)
         {
@@ -109,10 +113,25 @@ namespace Crud
 
         private void Eliminarbtn_Click(object sender, EventArgs e)
         {
-            var IdEliminar = Int32.Parse(IdBox.Text);
-            var FindEliminar = dgv.FindIndex(empleado => empleado.Id == IdEliminar);
-            eliminar(FindEliminar);
-            refresh();
+            string checker=IdBox.Text;
+            var isempty = dgv.Select(empleado=>empleado.Id).FirstOrDefault();
+            if (checker != "" && isempty!=0)
+            {
+                int IdEliminar = Int32.Parse(IdBox.Text);
+                var FindEliminar = dgv.FindIndex(empleado => empleado.Id == IdEliminar);
+                eliminar(FindEliminar);
+                refresh();
+                DataGridView.ClearSelection();
+            }
+            else if (isempty==0)
+            {
+                errormessage("No quedan datos por eliminar");
+            }
+            else
+            {
+                errormessage("El campo del Identificador esta vacio");
+            }
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
