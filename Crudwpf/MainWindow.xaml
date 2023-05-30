@@ -1,0 +1,26 @@
+﻿<Window x:Class="Crudwpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Crudwpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="IdBox" HorizontalAlignment="Left" Margin="74,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="26,42,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="NameBox" HorizontalAlignment="Left" Margin="74,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.05,1.027"/>
+        <Label Content="Edad" HorizontalAlignment="Left" Margin="242,47,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="242,97,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="AgeBox" HorizontalAlignment="Left" Margin="315,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="EmailBox" HorizontalAlignment="Left" Margin="315,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="Nuevobtn" Content="Nuevo" HorizontalAlignment="Left" Margin="610,161,0,0" VerticalAlignment="Top" Height="43" Width="126" Click="Nuevo_Click"/>
+        <Button x:Name="Guardarbtn" Content="Guardar" HorizontalAlignment="Left" Margin="610,233,0,0" VerticalAlignment="Top" Height="45" Width="126" Click="Guardar_Click"/>
+        <Button x:Name="Eliminarbtn" Content="Eliminar" HorizontalAlignment="Left" Margin="610,304,0,0" VerticalAlignment="Top" Height="48" Width="126" Click="Eliminar_Click" />
+        <DataGrid x:Name="Datagrid1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="26,161,323,21" SelectionChanged="Datagrid1_SelectionChanged" />
+        <!--<Binding.ValidationRules>
+            <local:IntegerValidationRule />
+        </Binding.ValidationRules>-->
+    </Grid>
+</Window>

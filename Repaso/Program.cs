@@ -14,7 +14,7 @@ namespace Repaso
         static void Main(string[] args)
         {
             BinaryAnalysis xx = new BinaryAnalysis();
-            xx.analyse(96);
+            xx.analyse(4722945);
 
             //LinQrepaso linq = new LinQrepaso();
             //linq.count();
