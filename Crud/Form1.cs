@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Crud
@@ -12,7 +14,7 @@ namespace Crud
         public Form1()
         {
             InitializeComponent();
-            Empleados empleados= new Empleados();
+            Empleados empleados = new Empleados();
             empleados.Id = 1;
             empleados.Name = "carlos";
             empleados.Age = 1;
@@ -30,14 +32,31 @@ namespace Crud
         }
         public void refresh()
         {
-           DataGridView.DataSource=null;
-           DataGridView.DataSource= dgv;
+            DataGridView.DataSource = null;
+            DataGridView.DataSource = dgv;
         }
         public void errormessage(string error)
         {
             MessageBox.Show(error);
         }
-
+        public bool validateNumbers()
+        {
+            bool valid = false;
+            double.TryParse(IdBox.Text, out double xid);
+            if (xid != 0)
+            {
+                errorProvider1.Clear();
+            }
+            else { errorProvider1.SetError(IdBox, "El indentificador debe ser un número"); }
+            double.TryParse(AgeBox.Text, out double xage);
+            if (xage != 0)
+            {
+                errorProvider2.Clear();
+            }
+            else { errorProvider2.SetError(AgeBox, "La edad debe ser un número"); }
+            if (xid != 0 && xage != 0) { valid = true; }
+            return valid;
+        }
         private void Label1_Click(object sender, EventArgs e)
         {
 
@@ -88,50 +107,60 @@ namespace Crud
 
         private void Guardarbtn_Click(object sender, EventArgs e)
         {
-            Empleados empleados = new Empleados();
-            empleados.Id = Int32.Parse(IdBox.Text);
-            empleados.Name = NameBox.Text;
-            empleados.Age = Int32.Parse(AgeBox.Text);
-            empleados.Email = EmailBox.Text;
-            bool already_exist = dgv.Any(empleado=>empleado.Id==empleados.Id);
-            if (already_exist)
+            if (validateNumbers())
             {
-                var findit = dgv.Where(empleado => empleado.Id == empleados.Id);
-                foreach (Empleados emp in findit)
+                Empleados empleados = new Empleados();
+                empleados.Id = Int32.Parse(IdBox.Text);
+                empleados.Name = NameBox.Text;
+                empleados.Age = Int32.Parse(AgeBox.Text);
+                empleados.Email = EmailBox.Text;
+                bool already_exist = dgv.Any(empleado => empleado.Id == empleados.Id);
+                if (already_exist)
                 {
-                    emp.Name = empleados.Name;
-                    emp.Age = empleados.Age;
-                    emp.Email = empleados.Email;
+                    load();
+                    var findit = dgv.Where(empleado => empleado.Id == empleados.Id);
+                    foreach (Empleados emp in findit)
+                    {
+                        emp.Name = empleados.Name;
+                        emp.Age = empleados.Age;
+                        emp.Email = empleados.Email;
+                    }
+
                 }
+                else
+                {
+                    load();
+                    updatelist(empleados);
+
+                }
+                refresh();
             }
-            else
-            {
-                updatelist(empleados);
-            }
-            refresh();
         }
 
         private void Eliminarbtn_Click(object sender, EventArgs e)
         {
-            string checker=IdBox.Text;
-            var isempty = dgv.Select(empleado=>empleado.Id).FirstOrDefault();
-            if (checker != "" && isempty!=0)
+            if (validateNumbers())
             {
-                int IdEliminar = Int32.Parse(IdBox.Text);
-                var FindEliminar = dgv.FindIndex(empleado => empleado.Id == IdEliminar);
-                eliminar(FindEliminar);
-                refresh();
-                DataGridView.ClearSelection();
+                string checker = IdBox.Text;
+                var isempty = dgv.Select(empleado => empleado.Id).FirstOrDefault();
+                if (checker != "" && isempty != 0)
+                {
+                    int IdEliminar = Int32.Parse(IdBox.Text);
+                    var FindEliminar = dgv.FindIndex(empleado => empleado.Id == IdEliminar);
+                    load();
+                    eliminar(FindEliminar);
+                    refresh();
+                    DataGridView.ClearSelection();
+                }
+                else if (isempty == 0)
+                {
+                    errormessage("No quedan datos por eliminar");
+                }
+                else
+                {
+                    errormessage("El campo del Identificador esta vacio");
+                }
             }
-            else if (isempty==0)
-            {
-                errormessage("No quedan datos por eliminar");
-            }
-            else
-            {
-                errormessage("El campo del Identificador esta vacio");
-            }
-           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -142,7 +171,7 @@ namespace Crud
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int item = (int)DataGridView.Rows[e.RowIndex].Cells[0].Value;
-            var find=dgv.Where(empleado=>empleado.Id == item).ToList();
+            var find = dgv.Where(empleado => empleado.Id == item).ToList();
             foreach (var empleado in find)
             {
                 IdBox.Text = empleado.Id.ToString();
@@ -151,6 +180,14 @@ namespace Crud
                 EmailBox.Text = empleado.Email;
             }
         }
+
+        private async void load()
+        {
+            pictureBox1.Visible = true;
+            await Task.Delay(TimeSpan.FromSeconds(3));
+            pictureBox1.Visible = false;
+        }
+
 
     }
 }
