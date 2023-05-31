@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace Crudwpf
 {
@@ -46,28 +47,35 @@ namespace Crudwpf
 
         private void Guardar_Click(object sender, RoutedEventArgs e)
         {
-            int id = Int32.Parse(IdBox.Text);
-            string name = NameBox.Text;
-            int age = Int32.Parse(AgeBox.Text);
-            string email = EmailBox.Text;
-            Empleados empleado = new Empleados(id, name, age, email);
-            bool already_exist = empleadosList.Any(emp => emp.Id == id);
-            if (already_exist)
+            bool valid = validateNumbers();
+            if (valid)
             {
-                var findit = empleadosList.Where(emp => emp.Id == id);
-                foreach (Empleados emp in findit)
+                int id = Int32.Parse(IdBox.Text);
+                string name = NameBox.Text;
+                int age = Int32.Parse(AgeBox.Text);
+                string email = EmailBox.Text;
+                Empleados empleado = new Empleados(id, name, age, email);
+                bool already_exist = empleadosList.Any(emp => emp.Id == id);
+                if (already_exist)
                 {
-                    emp.Name = empleado.Name;
-                    emp.Age = empleado.Age;
-                    emp.Email = empleado.Email;
+                    var findit = empleadosList.Where(emp => emp.Id == id);
+                    foreach (Empleados emp in findit)
+                    {
+                        emp.Name = empleado.Name;
+                        emp.Age = empleado.Age;
+                        emp.Email = empleado.Email;
+                    }
+                    refresh();
                 }
-                refresh();
+                else
+                {
+                    updatelist(empleado);
+                }
             }
             else
             {
-                updatelist(empleado);
+                MessageBox.Show("Hay un error en tus campos Id o Edad");
             }
-
         }
 
         private void Datagrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -91,17 +99,64 @@ namespace Crudwpf
 
         private void Eliminar_Click(object sender, RoutedEventArgs e)
         {
-            int id = Int32.Parse(IdBox.Text);
-            bool isempty = empleadosList.Any();
-            if (isempty)
+            bool valid = validateNumbers();
+            if (valid)
             {
-                var findEliminar = empleadosList.FindIndex(n => n.Id == id);
-                eliminar(findEliminar);
+                int id = Int32.Parse(IdBox.Text);
+                bool isempty = empleadosList.Any();
+                if (isempty)
+                {
+                    var findEliminar = empleadosList.FindIndex(n => n.Id == id);
+                    eliminar(findEliminar);
+                }
+                else
+                {
+                    MessageBox.Show("No hay elementos en la lista");
+                }
             }
             else
             {
-                MessageBox.Show("No hay elementos en la lista");
+                MessageBox.Show("Hay un error en tus campos Id o Edad");
             }
+        }
+
+        public bool validateNumbers()
+        {
+            bool valid = false;
+            int.TryParse(IdBox.Text, out int id);
+            int.TryParse(AgeBox.Text, out int age);
+            if (id != 0 && age != 0)
+            {
+                valid = true;
+            }
+            if (id == 0)
+            {
+                IdBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                IdBox.BorderBrush = Brushes.LightGray;
+            }
+
+            if (age == 0)
+            {
+                AgeBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                AgeBox.BorderBrush = Brushes.LightGray;
+            }
+            return valid;
+        }
+
+        private void IdBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            bool valid = validateNumbers();
+        }
+
+        private void AgeBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            bool valid = validateNumbers();
         }
     }
 }
