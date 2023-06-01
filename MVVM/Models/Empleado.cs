@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crudwpf
+namespace MVVM
 {
-    public class Empleados
+    public class Empleado
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
         public string Email { get; set; }
-        public Empleados() { }
-        public Empleados(int id, string name, int age, string email)
+        public Empleado() { }
+        public Empleado(int id, string name, int age, string email)
         {
             Id = id;
             Name = name;

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud", "Crud\Crud.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crudwpf", "Crudwpf\Crudwpf.csproj", "{53BF69B2-12F4-4778-B50B-40F8A9FDCD78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM", "MVVM\MVVM.csproj", "{681AF4FC-676D-4AD4-BB87-0310002A7273}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{53BF69B2-12F4-4778-B50B-40F8A9FDCD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53BF69B2-12F4-4778-B50B-40F8A9FDCD78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53BF69B2-12F4-4778-B50B-40F8A9FDCD78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{681AF4FC-676D-4AD4-BB87-0310002A7273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{681AF4FC-676D-4AD4-BB87-0310002A7273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{681AF4FC-676D-4AD4-BB87-0310002A7273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{681AF4FC-676D-4AD4-BB87-0310002A7273}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
