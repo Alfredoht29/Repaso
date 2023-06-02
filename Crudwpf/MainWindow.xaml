@@ -19,8 +19,5 @@
         <Button x:Name="Guardarbtn" Content="Guardar" HorizontalAlignment="Left" Margin="610,233,0,0" VerticalAlignment="Top" Height="45" Width="126" Click="Guardar_Click"/>
         <Button x:Name="Eliminarbtn" Content="Eliminar" HorizontalAlignment="Left" Margin="610,304,0,0" VerticalAlignment="Top" Height="48" Width="126" Click="Eliminar_Click" />
         <DataGrid x:Name="Datagrid1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="26,161,323,21" SelectionChanged="Datagrid1_SelectionChanged" />
-        <!--<Binding.ValidationRules>
-            <local:IntegerValidationRule />
-        </Binding.ValidationRules>-->
     </Grid>
 </Window>

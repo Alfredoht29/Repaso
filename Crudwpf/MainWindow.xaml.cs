@@ -1,5 +1,4 @@
-﻿using Crud;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -86,6 +85,7 @@ namespace Crudwpf
                 Empleados selectedRowData = (Empleados)e.AddedItems[0];
                 id = selectedRowData.Id;
             }
+
             var SelectedToBox = empleadosList.Where(empleado => empleado.Id == id).ToList();
             foreach (var item in SelectedToBox)
             {
