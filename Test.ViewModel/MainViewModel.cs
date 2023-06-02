@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -144,9 +145,13 @@ namespace Test.ViewModel
                 }
 
             }
-            else
+            else if(Id!=null && Age!=null)
             {
                 Empleados.Add(empleado);
+            }
+            else
+            {
+                MessageBox.Show("Corrige tus campos numericos");
             }
             Empleados = new ObservableCollection<Empleado>(Empleados);
         }
