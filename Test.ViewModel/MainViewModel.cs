@@ -104,7 +104,18 @@ namespace Test.ViewModel
                 return borrarCommand;
             }
         }
-
+        public ICommand RowClickCommand
+        {
+            get
+            {
+                if (rowClickCommand == null)
+                {
+                    //rowClickCommand = new RelayCommand((p) => RowClickedExecute(p));
+                    rowClickCommand = new RelayCommand<object>(RowClickedExecute);
+                }
+                return rowClickCommand;
+            }
+        }
         public Empleado _Empleado
         {
             get
@@ -113,15 +124,9 @@ namespace Test.ViewModel
             }
             set
             {
-                _empleado = value;
-                OnPropertyChanged("Empleado");
-                if (Id !=0 && _empleado!=null )
-                {
-                    Id = _empleado.Id;
-                    Name = _empleado.Name;
-                    Age = _empleado.Age;
-                    Email = _empleado.Email;
-                }
+                if(value != _empleado)
+                    _empleado = value;
+                OnPropertyChanged("_Empleado");
             }
         }
         public void BorrarCommandExecute()
@@ -161,6 +166,17 @@ namespace Test.ViewModel
             Name = String.Empty;
             Age = 0;
             Email = String.Empty;
+        }
+        public void RowClickedExecute(object parameter)
+        {
+            if (!(parameter is Empleado))
+                return;
+            
+            Empleado empSelected = (Empleado)parameter;
+            Id = empSelected.Id;
+            Name = empSelected.Name;
+            Age = empSelected.Age;
+            Email = empSelected.Email;
         }
         public ObservableCollection<Empleado> Empleados
         {

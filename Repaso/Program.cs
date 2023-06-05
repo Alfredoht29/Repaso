@@ -13,11 +13,11 @@ namespace Repaso
     {
         static void Main(string[] args)
         {
-            BinaryAnalysis xx = new BinaryAnalysis();
-            xx.analyse(4722945);
+            //BinaryAnalysis xx = new BinaryAnalysis();
+            //xx.analyse(4722945);
 
-            //LinQrepaso linq = new LinQrepaso();
-            //linq.count();
+            LinQrepaso linq = new LinQrepaso();
+            linq.min();
 
             //List<Person> personList = new List<Person>
             //{

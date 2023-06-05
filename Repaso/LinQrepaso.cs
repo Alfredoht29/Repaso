@@ -30,12 +30,12 @@ namespace Repaso
         }
         public void last()
         {
-          var last=(from person in personCollection select person).Last();
+          var last=personCollection.Last();
             Console.WriteLine($"{last.Name} {last.Age}");
         }
         public void min()
         {
-            var min=(from person in personCollection select person.Age).Min();
+            var min=personCollection.Select(person=>person.Age).Min();
             Console.WriteLine($"{min}");
         }
         public void max()
