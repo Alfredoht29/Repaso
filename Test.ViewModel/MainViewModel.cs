@@ -174,8 +174,13 @@ namespace Test.ViewModel
             cnt.Open();
             if (Id == 0 || Id == null)
             {
-                string command = String.Format("exec dbo.InsEmpleado '{0}','{1}','{2}'",Name,Age,Email);
-                SqlCommand insempleados= new SqlCommand(command, cnt);
+                //string command = String.Format("exec dbo.InsEmpleado '{0}','{1}','{2}'",Name,Age,Email);
+                //SqlCommand insempleados= new SqlCommand(command, cnt);
+                SqlCommand insempleados = new SqlCommand("InsEmpleado",cnt);
+                insempleados.CommandType = CommandType.StoredProcedure;
+                insempleados.Parameters.Add("@Name",SqlDbType.NChar,85).Value=Name;
+                insempleados.Parameters.Add("@Age",SqlDbType.Int).Value=Age;
+                insempleados.Parameters.Add("@Email", SqlDbType.NChar, 100).Value = Email;
                 using (SqlDataReader reader = insempleados.ExecuteReader()) { }
                 cnt.Close();
                 load();
