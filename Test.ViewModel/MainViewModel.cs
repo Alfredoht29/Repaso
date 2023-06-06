@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -26,10 +28,13 @@ namespace Test.ViewModel
         private ICommand guardarCommand;
         private ICommand borrarCommand;
         private ICommand rowClickCommand;
+        private readonly SqlConnection cnt = null;
 
         public MainViewModel()
         {
-            Empleados = new ObservableCollection<Empleado> { new Empleado(1, "Angel", 25, "asdlsd") };
+            DataAccess da = new DataAccess();
+            cnt = da.DbConnection();
+            load();
         }
         public int? Id
         {
@@ -124,41 +129,65 @@ namespace Test.ViewModel
             }
             set
             {
-                if(value != _empleado)
+                if (value != _empleado)
                     _empleado = value;
                 OnPropertyChanged("_Empleado");
             }
         }
         public void BorrarCommandExecute()
         {
-            int findIndex = Empleados.IndexOf(Empleados.Where(n => n.Id == Id).FirstOrDefault());
-            if (findIndex != -1) { Empleados.RemoveAt(findIndex); }
-           
+            //int findIndex = Empleados.IndexOf(Empleados.Where(n => n.Id == Id).FirstOrDefault());
+            //if (findIndex != -1) { Empleados.RemoveAt(findIndex); }
+            cnt.Open();
+            string command = String.Format("exec dbo.DelEmpleados '{0}'", Id);
+            SqlCommand delempleados = new SqlCommand(command, cnt);
+            using (SqlDataReader reader = delempleados.ExecuteReader()) { }
+            cnt.Close();
+            load();
         }
         public void GuardarCommandExecute()
         {
-            Empleado empleado = new Empleado(Id, Name, Age, Email);
-            bool repated = Empleados.Any(n => n.Id == Id);
-            if (repated)
-            {
-                var update = Empleados.Where(n => n.Id == empleado.Id);
-                foreach (Empleado n in update)
-                {
-                    n.Name = empleado.Name;
-                    n.Age = empleado.Age;
-                    n.Email = empleado.Email;
-                }
+            #region sindb
+            //Empleado empleado = new Empleado(Id, Name, Age, Email);
+            //bool repated = Empleados.Any(n => n.Id == Id);
+            //if (repated)
+            //{
+            //    var update = Empleados.Where(n => n.Id == empleado.Id);
+            //    foreach (Empleado n in update)
+            //    {
+            //        n.Name = empleado.Name;
+            //        n.Age = empleado.Age;
+            //        n.Email = empleado.Email;
+            //    }
 
-            }
-            else if(Id!=null && Age!=null)
+            //}
+            //else if(Id!=null && Age!=null)
+            //{
+            //    Empleados.Add(empleado);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Corrige tus campos numericos");
+            //}
+            //Empleados = new ObservableCollection<Empleado>(Empleados);
+            #endregion
+            cnt.Open();
+            if (Id == 0 || Id == null)
             {
-                Empleados.Add(empleado);
+                string command = String.Format("exec dbo.InsEmpleado '{0}','{1}','{2}'",Name,Age,Email);
+                SqlCommand insempleados= new SqlCommand(command, cnt);
+                using (SqlDataReader reader = insempleados.ExecuteReader()) { }
+                cnt.Close();
+                load();
             }
             else
             {
-                MessageBox.Show("Corrige tus campos numericos");
+                string command = String.Format("exec dbo.UpdEmpleados '{0}','{1}','{2}','{3}'", Id,Name, Age, Email);
+                SqlCommand updempleados = new SqlCommand(command, cnt);
+                using (SqlDataReader reader = updempleados.ExecuteReader()) { }
+                cnt.Close();
+                load();
             }
-            Empleados = new ObservableCollection<Empleado>(Empleados);
         }
         public void NewCommandExecute()
         {
@@ -171,7 +200,7 @@ namespace Test.ViewModel
         {
             if (!(parameter is Empleado))
                 return;
-            
+
             Empleado empSelected = (Empleado)parameter;
             Id = empSelected.Id;
             Name = empSelected.Name;
@@ -189,5 +218,26 @@ namespace Test.ViewModel
             }
         }
 
+        public void load()
+        {
+            cnt.Open();
+            SqlCommand getempleados = new SqlCommand("exec dbo.SelEmpleados", cnt);
+            Empleados = new ObservableCollection<Empleado>();
+            using (SqlDataReader reader = getempleados.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Empleado empleado = new Empleado();
+
+                    // Assuming the columns in the result set are "Id" and "Name"
+                    empleado.Id = reader.GetInt32(0);
+                    empleado.Name = reader.GetString(1);
+                    empleado.Age = reader.GetInt32(2);
+                    empleado.Email = reader.GetString(3);
+                    Empleados.Add(empleado);
+                }
+                cnt.Close();
+            }
+        }
     }
 }
