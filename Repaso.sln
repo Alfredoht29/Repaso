@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlReader", "XmlReader\XmlR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder_Pattern", "Builder_Pattern\Builder_Pattern.csproj", "{420B13A4-FFB2-4D02-95A0-6CD3D883110C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adapter", "Adapter\Adapter.csproj", "{52445785-3BFD-4CA1-AA0E-0073FF8530FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{420B13A4-FFB2-4D02-95A0-6CD3D883110C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{420B13A4-FFB2-4D02-95A0-6CD3D883110C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{420B13A4-FFB2-4D02-95A0-6CD3D883110C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52445785-3BFD-4CA1-AA0E-0073FF8530FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52445785-3BFD-4CA1-AA0E-0073FF8530FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52445785-3BFD-4CA1-AA0E-0073FF8530FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52445785-3BFD-4CA1-AA0E-0073FF8530FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
