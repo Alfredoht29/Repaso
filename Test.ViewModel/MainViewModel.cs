@@ -28,12 +28,10 @@ namespace Test.ViewModel
         private ICommand guardarCommand;
         private ICommand borrarCommand;
         private ICommand rowClickCommand;
-        private readonly SqlConnection cnt = null;
+        private readonly SqlConnection cnt = DataAccess.Instance.DbConnection();
 
         public MainViewModel()
         {
-            DataAccess da = new DataAccess();
-            cnt = da.DbConnection();
             load();
         }
         public int? Id
@@ -187,9 +185,20 @@ namespace Test.ViewModel
             }
             else
             {
+                // Insert and Select in one storedProcedure
                 string command = String.Format("exec dbo.UpdEmpleados '{0}','{1}','{2}','{3}'", Id,Name, Age, Email);
                 SqlCommand updempleados = new SqlCommand(command, cnt);
-                using (SqlDataReader reader = updempleados.ExecuteReader()) { }
+                using (SqlDataReader reader = updempleados.ExecuteReader()) {
+                    while (reader.Read())
+                    {
+                        Empleado empleado = new Empleado();
+                        empleado.Id = reader.GetInt32(0);
+                        empleado.Name = reader.GetString(1);
+                        empleado.Age = reader.GetInt32(2);
+                        empleado.Email = reader.GetString(3);
+                        Empleados.Add(empleado);
+                    }
+                }
                 cnt.Close();
                 load();
             }
@@ -233,8 +242,6 @@ namespace Test.ViewModel
                 while (reader.Read())
                 {
                     Empleado empleado = new Empleado();
-
-                    // Assuming the columns in the result set are "Id" and "Name"
                     empleado.Id = reader.GetInt32(0);
                     empleado.Name = reader.GetString(1);
                     empleado.Age = reader.GetInt32(2);

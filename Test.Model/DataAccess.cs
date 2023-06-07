@@ -9,10 +9,16 @@ using System.Data.SqlClient;
 
 namespace Test.Model
 {
-    public class DataAccess
+    public sealed class DataAccess
     {
-        static DataAccess classInstance = null;
-        static DataAccess Instance
+
+        private DataAccess()
+        {
+                
+        }
+
+        private static DataAccess classInstance = null;
+        public static DataAccess Instance
         {
             get
               {
