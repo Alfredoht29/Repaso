@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryAnalysis.cs" />
+    <Compile Include="Concretas\ReporteCajas.cs" />
+    <Compile Include="Contracts\IReporting.cs" />
     <Compile Include="LinQrepaso.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />

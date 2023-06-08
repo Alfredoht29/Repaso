@@ -15,13 +15,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.ViewModel", "Test.View
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.View", "Test.View\Test.View.csproj", "{0E40031F-FFFA-4C39-877C-70A418842074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes_Struct_Record_net", "Classes_Struct_Record_net\Classes_Struct_Record_net.csproj", "{EC9D5448-68BA-4787-B02D-48791B2CA5B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes_Struct_Record_net", "Classes_Struct_Record_net\Classes_Struct_Record_net.csproj", "{EC9D5448-68BA-4787-B02D-48791B2CA5B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlReader", "XmlReader\XmlReader.csproj", "{F4707723-A716-4D61-A94B-76E46293F9AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder_Pattern", "Builder_Pattern\Builder_Pattern.csproj", "{420B13A4-FFB2-4D02-95A0-6CD3D883110C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adapter", "Adapter\Adapter.csproj", "{52445785-3BFD-4CA1-AA0E-0073FF8530FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleService", "PeopleService\PeopleService.csproj", "{FCEF686A-CFD4-4492-A73E-51AF6FD6F1C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleClient", "PeopleClient\PeopleClient.csproj", "{B8C7989E-F394-494F-8C81-6572CE4807F3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{60228BD9-69CA-4D65-8435-7A0746C03CF2} = {60228BD9-69CA-4D65-8435-7A0746C03CF2}
+		{D04C888D-C896-45F6-AE2D-F280DCD04149} = {D04C888D-C896-45F6-AE2D-F280DCD04149}
+		{FCEF686A-CFD4-4492-A73E-51AF6FD6F1C9} = {FCEF686A-CFD4-4492-A73E-51AF6FD6F1C9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTestPeople", "WCFTestPeople\WCFTestPeople.csproj", "{60228BD9-69CA-4D65-8435-7A0746C03CF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeWCF", "EmployeeWCF\EmployeeWCF.csproj", "{D04C888D-C896-45F6-AE2D-F280DCD04149}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +82,22 @@ Global
 		{52445785-3BFD-4CA1-AA0E-0073FF8530FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52445785-3BFD-4CA1-AA0E-0073FF8530FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52445785-3BFD-4CA1-AA0E-0073FF8530FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCEF686A-CFD4-4492-A73E-51AF6FD6F1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCEF686A-CFD4-4492-A73E-51AF6FD6F1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCEF686A-CFD4-4492-A73E-51AF6FD6F1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCEF686A-CFD4-4492-A73E-51AF6FD6F1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8C7989E-F394-494F-8C81-6572CE4807F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C7989E-F394-494F-8C81-6572CE4807F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C7989E-F394-494F-8C81-6572CE4807F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C7989E-F394-494F-8C81-6572CE4807F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60228BD9-69CA-4D65-8435-7A0746C03CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60228BD9-69CA-4D65-8435-7A0746C03CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60228BD9-69CA-4D65-8435-7A0746C03CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60228BD9-69CA-4D65-8435-7A0746C03CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D04C888D-C896-45F6-AE2D-F280DCD04149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D04C888D-C896-45F6-AE2D-F280DCD04149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D04C888D-C896-45F6-AE2D-F280DCD04149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D04C888D-C896-45F6-AE2D-F280DCD04149}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

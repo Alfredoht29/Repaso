@@ -16,8 +16,8 @@ namespace Repaso
             //BinaryAnalysis xx = new BinaryAnalysis();
             //xx.analyse(4722945);
 
-            LinQrepaso linq = new LinQrepaso();
-            linq.min();
+            //LinQrepaso linq = new LinQrepaso();
+            //linq.min();
 
             //List<Person> personList = new List<Person>
             //{
