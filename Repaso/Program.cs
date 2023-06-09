@@ -13,6 +13,16 @@ namespace Repaso
     {
         static void Main(string[] args)
         {
+            Hijo son = new Hijo();
+            son.xd();
+            Console.WriteLine(son.Name);
+            //Suma sum = new Suma();
+            //Interface sum2 = new Suma();
+            //Operaciones sub = new Resta();
+            //Console.WriteLine(sum.xd("xd"));
+            //Console.WriteLine(sum.opera(1, 2));
+            //Console.WriteLine(sub.opera(10,5));
+            #region commented
             //BinaryAnalysis xx = new BinaryAnalysis();
             //xx.analyse(4722945);
 
@@ -91,6 +101,7 @@ namespace Repaso
             //{
             //    Console.WriteLine($"{person.Name} y tiene {person.Age}");
             //}
+            #endregion
             Console.ReadLine();
         }
     }

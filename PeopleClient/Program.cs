@@ -9,6 +9,7 @@ namespace PeopleClient
 {
     internal class Program
     {
+        //Este programa hace uso de los wcf 
         static void Main(string[] args)
         {
             //ServiceProxy.PersonServiceClient serviceProxy = new ServiceProxy.PersonServiceClient();
@@ -22,10 +23,7 @@ namespace PeopleClient
             PersonSProxy.PersonServiceClient personlist = new PersonSProxy.PersonServiceClient();
             List<PersonSProxy.Person> plist = new List<PersonSProxy.Person>();
             var a = personlist.makeperson(1, "manuel", "Hernandez", 23, "asdsd");
-            //List<Person> plist = new List<Person>();
-            //Person xd = new Person(1, "manuel", "Hernandez", 23, "asdsd");
             plist.Add(a);
-            //{ new Person(1, "manuel", "Hernandez", 23, "asdsd") }
             personlist.ProcessPersons(plist.ToArray());
             Console.ReadKey();
         }
