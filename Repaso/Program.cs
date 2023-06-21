@@ -16,6 +16,7 @@ namespace Repaso
             Hijo son = new Hijo();
             son.xd();
             Console.WriteLine(son.Name);
+
             //Suma sum = new Suma();
             //Interface sum2 = new Suma();
             //Operaciones sub = new Resta();
@@ -26,8 +27,8 @@ namespace Repaso
             //BinaryAnalysis xx = new BinaryAnalysis();
             //xx.analyse(4722945);
 
-            //LinQrepaso linq = new LinQrepaso();
-            //linq.min();
+            LinQrepaso linq = new LinQrepaso();
+            linq.selwhere();
 
             //List<Person> personList = new List<Person>
             //{

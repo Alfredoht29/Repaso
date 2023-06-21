@@ -72,5 +72,14 @@ namespace Repaso
                 }
             }
         }
+        public void selwhere()
+        {
+            var w = personCollection.Where(person => person.Age==2);
+            foreach(var person in w)
+            {
+                Console.WriteLine(person.Name);
+                Console.WriteLine(person.Age);
+            }
+        }
     }
 }

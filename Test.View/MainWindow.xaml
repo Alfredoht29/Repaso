@@ -23,8 +23,6 @@
         <Button x:Name="Nuevobtn" Content="Nuevo" HorizontalAlignment="Left" Margin="610,161,0,0" VerticalAlignment="Top" Height="43" Width="126" Command="{Binding NewCommand}"/>
         <Button x:Name="Guardarbtn" Content="Guardar" HorizontalAlignment="Left" Margin="610,233,0,0" VerticalAlignment="Top" Height="45" Width="126" Command="{Binding GuardarCommand}"  />
         <Button x:Name="Eliminarbtn" Content="Eliminar" HorizontalAlignment="Left" Margin="610,304,0,0" VerticalAlignment="Top" Height="48" Width="126" Command="{Binding BorrarCommand}" />
-        <!--<DataGrid x:Name="Datagrid1" Margin="26,161,323,21" ItemsSource="{Binding Empleados}" SelectedItem="{Binding _Empleado}"/>-->
-        <!--<DataGrid x:Name="Datagrid1" Margin="26,161,323,21" ItemsSource="{Binding Empleados}"/>-->
         <DataGrid x:Name="Datagrid1" Margin="26,161,223,21"
     ItemsSource="{Binding Empleados}"  SelectedItem="{Binding _Empleado}"
     IsSynchronizedWithCurrentItem="True" IsReadOnly="True">
